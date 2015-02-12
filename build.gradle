@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.7
+version = '7.0-SNAPSHOT'
+jar {
+    manifest {
+        attributes 'Implementation-Title': "Spring-LAB - {version}", 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+/*    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+*/    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+/*    poc {
+        java {
+            srcDir 'src/poc/java'
+        }
+        resources {
+            srcDir 'src/poc/resources'
+        }
+    }
+*/}
+
+eclipse {
+    classpath {
+        downloadSources=true
+    }
+    eclipseJdt << {
+        File f = file('.settings/org.eclipse.core.resources.prefs')
+        f.write('eclipse.preferences.version=1\n')
+        f.append('encoding/<project>=UTF-8')
+    }
+}
+
+dependencies {
+    versionManagement 'io.spring.platform:platform-versions:1.0.2.RELEASE@properties'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    compile 'org.springframework:spring-jdbc:4.1.4.RELEASE'
+    compile 'com.h2database:h2:1.4.185'
+
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.google.code.findbugs:jsr305:3.0.0'
+
+    compile 'org.easytesting:fest-reflect:1.4.1'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.apache.jackrabbit:jackrabbit-jcr-tests:2.9.0'
+}
