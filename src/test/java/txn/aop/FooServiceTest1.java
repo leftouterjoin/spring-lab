@@ -5,10 +5,6 @@ import static org.junit.Assert.*;
 import javax.sql.DataSource;
 
 import org.h2.jdbc.JdbcSQLException;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -31,27 +27,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { FooServiceTest1.AppConfig.class })
 public class FooServiceTest1 {
-	private static Logger L = LoggerFactory
+	private Logger L = LoggerFactory
 			.getLogger(FooServiceTest1.class);
-	@BeforeClass
-	public static void setup() {
-		L.info("■hajime");
-	}
-
-	@Before
-	public void setup2() {
-		L.info("■hajime");
-	}
-
-	@After
-	public void teardown() {
-		L.info("■owari");
-	}
-
-	@AfterClass
-	public static void teardown2() {
-		L.info("■owari");
-	}
 
 	@Test
 	public void testTxnCommit() throws Throwable {
@@ -85,8 +62,8 @@ public class FooServiceTest1 {
 	@EnableTransactionManagement
 	public static class AppConfig {
 		@Bean
-		TransactionHandler createTransactionalOperation() {
-			return new TransactionHandlerImpl();
+		TransactionalOperation createTransactionalOperation() {
+			return new TransactionalOperationImpl();
 		}
 
 		@Bean
