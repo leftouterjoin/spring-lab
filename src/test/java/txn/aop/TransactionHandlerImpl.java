@@ -1,6 +1,5 @@
 package txn.aop;
 
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.h2.jdbc.JdbcSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +14,8 @@ public class TransactionHandlerImpl implements TransactionHandler, AutoCloseable
 
 	@Transactional(rollbackFor = JdbcSQLException.class)//★
 	@Override
-	public Object doOperation(ProceedingJoinPoint pjp) throws Throwable {
-		L.info("■{}", pjp.getSignature());
-		return pjp.proceed();
+	public Object invoke(Func delegate) throws Throwable {
+		return delegate.invoke();
 	}
 
 	@Override
