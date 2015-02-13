@@ -16,24 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class TransactionAspect {
 	private Logger L = LoggerFactory
 			.getLogger(FooServiceTest1.class);
-//	static final String POINTCUT_EXPRESSION = "execution(* FooService.insert(**))";
-//	static final String POINTCUT_EXPRESSION = "within(txn.aop.*) && execution(* insert(**))";
-//	static final String POINTCUT_EXPRESSION = "bean(*Service*)";
 	static final String POINTCUT_EXPRESSION = "within(*..*ServiceImpl) && (execution(* insert(**)) || execution(* update(**)) || execution(* delete(**)))";
 
 	@Around(POINTCUT_EXPRESSION)
 	public Object around(ProceedingJoinPoint pjp) throws Throwable {
 		L.info("■{}", pjp.getSignature());
-//		Object o = pjp.proceed();
-//		return o;
 		return transactionalOperation.doOperation(pjp);
 	}
 
 	@Autowired
 	TransactionHandler transactionalOperation;
-
-//	@Transactional
-//	private Object transactionalOperation(ProceedingJoinPoint pjp) throws Throwable {
-//		return pjp.proceed();
-//	}
 }
