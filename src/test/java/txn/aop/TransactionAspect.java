@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ public class TransactionAspect {
 	}
 
 	@Autowired
-	TransactionalOperation transactionalOperation;
+	TransactionHandler transactionalOperation;
 
 //	@Transactional
 //	private Object transactionalOperation(ProceedingJoinPoint pjp) throws Throwable {
