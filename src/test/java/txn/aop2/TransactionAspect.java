@@ -5,10 +5,8 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 public class TransactionAspect {
 	private Logger L = LoggerFactory.getLogger(BarServiceTest1.class);
 //	static final String POINTCUT_EXPRESSION = "within(*..*ServiceImpl) && execution(* *(**))";
