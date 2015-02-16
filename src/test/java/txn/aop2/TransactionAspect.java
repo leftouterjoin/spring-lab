@@ -14,7 +14,7 @@ public class TransactionAspect {
 
 	@AfterReturning(value = POINTCUT_EXPRESSION, returning = "o")
 	public void afterRetuning(Object o) {
-		// 正常終了時のみ読み出される
+		// 正常終了時のみ呼び出される
 		L.info("■after!");
 	}
 
