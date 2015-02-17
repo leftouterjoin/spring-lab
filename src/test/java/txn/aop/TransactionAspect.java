@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class TransactionAspect {
-	private Logger L = LoggerFactory.getLogger(FooServiceTest1.class);
+	private Logger L = LoggerFactory.getLogger(TransactionAspect.class);
 	static final String POINTCUT_EXPRESSION = "within(*..*ServiceImpl) && (execution(* insert(**)) || execution(* update(**)) || execution(* select(**)))";
 
 	@Autowired
